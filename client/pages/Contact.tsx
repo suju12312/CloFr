@@ -177,7 +177,7 @@ export default function Contact() {
               <div className="space-y-3 text-sm">
                 <div>
                   <div className="font-semibold">Address</div>
-                  <p className="text-muted-foreground">Add your business address here for customers to visit or for pickup. Share it and I’ll update this section.</p>
+                  <p className="text-muted-foreground">Prem Nagar,Goregaon West, Unnat Nagar no 2,Near inorbit mall Mumbai-400104.</p>
                 </div>
                 <div>
                   <div className="font-semibold">Phone</div>
