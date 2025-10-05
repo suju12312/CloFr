@@ -27,7 +27,7 @@ const translations = {
         s3: { t: "Fresh delivery", d: "Neatly packed, on time, every time." },
       },
       why: {
-        title: "Why choose Freshfold",
+        title: "Why choose CloFr",
         eco: { t: "Eco-friendly", d: "Skin-safe, planet-friendly detergents." },
         trust: { t: "Trusted care", d: "Fabric-safe processes & QC." },
         finish: { t: "Premium finish", d: "Sharp ironing and packaging." },
@@ -109,7 +109,7 @@ const translations = {
     },
     home: {
       badge: "तेज़ • साफ़ • भरोसेमंद",
-      title: "Freshfold — प्रीमियम लॉन्ड्री और ड्राई क्लीनिंग",
+      title: "CloFr — प्रीमियम लॉन्ड्री और ड्राई क्लीनिंग",
       desc:
         "डोरस्टेप पिकअप और डिलीवरी। लॉन्ड्री, ड्राई क्लीनिंग, आयरनिंग और शू केयर — सब कुछ ध्यान से। व्हाट्सएप पर सेकंडों में ऑर्डर करें।",
       how: {
@@ -119,7 +119,7 @@ const translations = {
         s3: { t: "ताज़ा डिलीवरी", d: "साफ़-सुथरा पैक, समय पर हर बार।" },
       },
       why: {
-        title: "क्यों चुनें Freshfold",
+        title: "क्यों चुनें CloFr",
         eco: { t: "इको-फ्रेंडली", d: "त्वचा-सुरक्षित, पर्यावरण-अन��कूल डिटर्जेंट।" },
         trust: { t: "विश्वसनीय देखभाल", d: "फैब्रिक-सेफ प्रक्रिया और गुणवत्ता जाँच।" },
         finish: { t: "प्रीमियम फिनिश", d: "शार्प आयरनिंग और पैकेजिंग।" },
@@ -201,7 +201,7 @@ const translations = {
     },
     home: {
       badge: "जलद • स्वच्छ • विश्वासार्ह",
-      title: "Freshfold — प्रीमियम लॉन्ड्री आणि ड्राय क्लिनिंग",
+      title: "CloFr — प्रीमियम लॉन्ड्री आणि ड्राय क्लिनिंग",
       desc:
         "घरपोच पिकअप आणि डिलिव्हरी. लॉन्ड्री, ड्राय क्लिनिंग, इस्त्री आणि शू केअर — सगळं का��जीपूर्वक. व्हॉट्सअ‍ॅपवर सेकंदात ऑर्डर करा.",
       how: {
@@ -211,7 +211,7 @@ const translations = {
         s3: { t: "ताजेतवाने डिलिव्हरी", d: "नीट पॅक केलेले, वेळेवर." },
       },
       why: {
-        title: "Freshfold का निवडाल",
+        title: "CloFr का निवडाल",
         eco: { t: "इको-फ्रेंडली", d: "त्वचेसाठी सुरक्षित, पर्यावरणपूरक डिटर्जेंट." },
         trust: { t: "विश्वासू काळजी", d: "कपड्यांसाठी सुरक्षित प्रक्रिया व QC." },
         finish: { t: "प्रीमियम फिनिश", d: "तीक्ष्ण इस्त्री आणि पॅकेजिंग." },
