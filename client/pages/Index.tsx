@@ -13,29 +13,29 @@ export default function Index() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-100 via-white to-teal-100" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-100 via-white to-teal-100 dark:from-emerald-900/30 dark:via-slate-900 dark:to-teal-900/20" />
         <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-emerald-300/40 blur-3xl animate-pulse" />
         <div className="absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-teal-300/40 blur-3xl animate-pulse" />
-        <div className="container mx-auto px-4 pt-16 pb-20 grid gap-10 md:grid-cols-2 items-center">
+        <div className="container mx-auto px-4 pt-12 pb-16 grid gap-8 md:grid-cols-2 items-center">
           <motion.div initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.6 }}>
             <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-medium ring-1 ring-emerald-200">
               {t("home.badge")}
             </div>
-            <motion.h1 className="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight" variants={fadeUp} transition={{ delay: 0.1 }}>
+            <motion.h1 className="mt-3 text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight" variants={fadeUp} transition={{ delay: 0.1 }}>
               {t("home.title")}
             </motion.h1>
-            <motion.p className="mt-4 text-lg text-muted-foreground max-w-xl" variants={fadeUp} transition={{ delay: 0.2 }}>
+            <motion.p className="mt-3 text-base sm:text-lg text-muted-foreground max-w-xl break-words" variants={fadeUp} transition={{ delay: 0.2 }}>
               {t("home.desc")}
             </motion.p>
-            <motion.div className="mt-8 flex flex-wrap items-center gap-3" variants={fadeUp} transition={{ delay: 0.3 }}>
-              <Button asChild size="lg">
+            <motion.div className="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3" variants={fadeUp} transition={{ delay: 0.3 }}>
+              <Button asChild size="lg" className="w-full sm:w-auto">
                 <a href={whatsappLink(`Hi ${SITE.name}, I want to place a laundry order.`)} target="_blank" rel="noreferrer">{t("common.orderWhatsApp")}</a>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                 <a href="/services">{t("common.seeServices")}</a>
               </Button>
             </motion.div>
-            <ul className="mt-6 grid gap-2 text-sm text-muted-foreground">
+            <ul className="mt-5 grid gap-2 text-sm text-muted-foreground">
               <li>• {t("common.freePickup")}</li>
               <li>• {t("common.ecoFriendly")}</li>
               <li>• {t("common.turnaround")}</li>
@@ -78,12 +78,23 @@ export default function Index() {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center">{t("home.how.title")}</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {[{ Icon: CalendarCheck, key: "s1" }, { Icon: Droplets, key: "s2" }, { Icon: Truck, key: "s3" }].map(({ Icon, key }, i) => (
-              <motion.div key={key} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-xl border bg-card p-6 shadow-sm">
+          <div className="mt-8 grid gap-4 sm:gap-6 md:grid-cols-3">
+            {[
+              { Icon: CalendarCheck, key: "s1" },
+              { Icon: Droplets, key: "s2" },
+              { Icon: Truck, key: "s3" },
+            ].map(({ Icon, key }, i) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05 }}
+                className="rounded-xl border bg-card p-5 sm:p-6 shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md"
+              >
                 <div className="h-11 w-11 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center"><Icon className="h-6 w-6" /></div>
-                <h3 className="mt-4 font-semibold text-lg">{t(`home.how.${key}.t`)}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{t(`home.how.${key}.d`)}</p>
+                <h3 className="mt-3 sm:mt-4 font-semibold text-base sm:text-lg">{t(`home.how.${key}.t`)}</h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{t(`home.how.${key}.d`)}</p>
               </motion.div>
             ))}
           </div>

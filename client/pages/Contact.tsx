@@ -48,16 +48,16 @@ export default function Contact() {
     <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Contact</h1>
-          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">Contact</h1>
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto break-words">
             Fill the form to book a pickup or ask anything. You can also reach us directly on WhatsApp.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>Send a message</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">Send a message</CardTitle>
             </CardHeader>
             <CardContent>
               <Form {...form}>
@@ -158,9 +158,9 @@ export default function Contact() {
                     )}
                   />
 
-                  <div className="flex gap-3">
-                    <Button type="submit" className="min-w-40">Send via WhatsApp</Button>
-                    <Button asChild variant="outline">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button type="submit" className="min-w-40 w-full sm:w-auto">Send via WhatsApp</Button>
+                    <Button asChild variant="outline" className="w-full sm:w-auto">
                       <a href={`https://wa.me/${SITE.whatsappNumber}`} target="_blank" rel="noreferrer">Open WhatsApp</a>
                     </Button>
                   </div>
@@ -171,7 +171,7 @@ export default function Contact() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Visit or call us</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">Visit or call us</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3 text-sm">
@@ -181,7 +181,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-semibold">Phone</div>
-                  <a className="text-primary hover:underline" href={`tel:${SITE.phoneDisplay}`}>{SITE.phoneDisplay}</a>
+                  <span>{SITE.phoneDisplay}</span>
                 </div>
                 <div>
                   <div className="font-semibold">WhatsApp</div>

@@ -13,12 +13,14 @@ import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import Layout from "@/components/Layout";
 import { I18nProvider } from "@/lib/i18n";
+import { ThemeProvider } from "next-themes";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <I18nProvider>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -35,6 +37,7 @@ const App = () => (
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
+      </ThemeProvider>
     </I18nProvider>
   </QueryClientProvider>
 );

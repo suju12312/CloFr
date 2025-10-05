@@ -70,21 +70,21 @@ export default function Services() {
     <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">Our Services</h1>
-          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">Our Services</h1>
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto break-words">
             Laundry, Dry Cleaning, Ironing, Footwear care, and Household cleaning — sab types available.
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map(({ title, desc, Icon, types }) => (
-            <div key={title} className="rounded-xl border bg-card text-card-foreground shadow-sm p-6">
+            <div key={title} className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 sm:p-6 transition-transform hover:-translate-y-0.5 hover:shadow-md">
               <div className="h-11 w-11 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center">
                 <Icon className="h-6 w-6" />
               </div>
-              <h3 className="mt-4 font-semibold text-lg">{title}</h3>
+              <h3 className="mt-3 sm:mt-4 font-semibold text-base sm:text-lg">{title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-              <ul className="mt-4 text-sm space-y-1 list-disc pl-5">
+              <ul className="mt-3 sm:mt-4 text-sm space-y-1 list-disc pl-5">
                 {types.map((t) => (
                   <li key={t}>{t}</li>
                 ))}
@@ -93,8 +93,8 @@ export default function Services() {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <Button asChild size="lg">
+        <div className="mt-8 sm:mt-10 text-center">
+          <Button asChild size="lg" className="w-full sm:w-auto">
             <a href={whatsappLink("Hi, I want to book a service.")} target="_blank" rel="noreferrer">
               Book on WhatsApp
             </a>

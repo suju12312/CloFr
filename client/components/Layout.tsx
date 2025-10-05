@@ -1,15 +1,18 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { SITE } from "@/lib/site";
 import WhatsAppFAB from "@/components/WhatsAppFAB";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useI18n } from "@/lib/i18n";
-import { Instagram, Phone } from "lucide-react";
+import { Instagram, Phone, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 
-function NavItem({ to, label }: { to: string; label: string }) {
+function NavItem({ to, label, onClick }: { to: string; label: string; onClick?: () => void }) {
   return (
     <NavLink
       to={to}
+      onClick={onClick}
       className={({ isActive }) =>
         `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
           isActive
@@ -25,20 +28,32 @@ function NavItem({ to, label }: { to: string; label: string }) {
 
 export default function Layout() {
   const { t, lang, setLang } = useI18n();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const location = useLocation();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-emerald-50">
-      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 border-b">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-emerald-50 dark:from-slate-900 dark:to-slate-950">
+      {/* Reserve space so content doesn't go under sticky header */}
+      <div aria-hidden className="h-16 md:h-20" />
+      <header className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-white/80 dark:bg-slate-900/80 border-b">
         <div className="container mx-auto px-4 py-3 flex items-center gap-3 justify-between">
           <a href="/" className="flex items-center gap-2 font-extrabold text-xl">
-            <span className="inline-block h-8 w-8 rounded-lg bg-emerald-500 text-white grid place-items-center shadow-sm">FF</span>
+            <span className="inline-block h-8 w-8 rounded-lg bg-emerald-500 text-white grid place-items-center shadow-sm">CF</span>
             <span>{SITE.name}</span>
           </a>
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-2">
             <NavItem to="/" label={t("nav.home")} />
             <NavItem to="/services" label={t("nav.services")} />
             <NavItem to="/pricing" label={t("nav.pricing")} />
             <NavItem to="/contact" label={t("nav.contact")} />
           </nav>
+          {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-2">
             <Select value={lang} onValueChange={(v) => setLang(v as any)}>
               <SelectTrigger className="w-[120px]"><SelectValue /></SelectTrigger>
@@ -48,11 +63,63 @@ export default function Layout() {
                 <SelectItem value="mr">मराठी</SelectItem>
               </SelectContent>
             </Select>
+            <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </Button>
             <Button asChild>
               <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`Hi ${SITE.name}, I want to place a laundry order.`)}`} target="_blank" rel="noreferrer">{t("common.orderWhatsApp")}</a>
             </Button>
           </div>
+
+          {/* Mobile toggles */}
+          <div className="md:hidden flex items-center gap-2">
+            <Select
+              value={lang}
+              onValueChange={(v) => {
+                setLang(v as any);
+                setMobileOpen(false);
+              }}
+            >
+              <SelectTrigger className="w-[90px]"><SelectValue /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">EN</SelectItem>
+                <SelectItem value="hi">HI</SelectItem>
+                <SelectItem value="mr">MR</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </Button>
+            <Button variant="outline" size="icon" aria-label="Toggle menu" onClick={() => setMobileOpen((v) => !v)}>
+              {/* hamburger */}
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </Button>
+          </div>
         </div>
+        {/* Mobile menu sheet */}
+        {mobileOpen && (
+          <>
+            {/* backdrop */}
+            <button aria-label="Close menu" onClick={() => setMobileOpen(false)} className="fixed inset-0 top-14 z-40 bg-black/30 md:hidden" />
+            <div className="fixed inset-x-0 top-14 z-50 md:hidden border-b bg-background/95 supports-[backdrop-filter]:backdrop-blur shadow-sm">
+              <div className="container mx-auto px-4 py-3 space-y-3">
+                <nav className="flex flex-col gap-1">
+                <NavItem to="/" label={t("nav.home")} onClick={() => setMobileOpen(false)} />
+                <NavItem to="/services" label={t("nav.services")} onClick={() => setMobileOpen(false)} />
+                <NavItem to="/pricing" label={t("nav.pricing")} onClick={() => setMobileOpen(false)} />
+                <NavItem to="/contact" label={t("nav.contact")} onClick={() => setMobileOpen(false)} />
+                </nav>
+                <Button asChild className="w-full" onClick={() => setMobileOpen(false)}>
+                  <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`Hi ${SITE.name}, I want to place a laundry order.`)}`} target="_blank" rel="noreferrer">{t("common.orderWhatsApp")}</a>
+                </Button>
+              </div>
+            </div>
+          </>
+        )}
       </header>
 
       <main className="flex-1">
@@ -77,7 +144,7 @@ export default function Layout() {
             <div className="font-semibold mb-2">{t("footer.contact")}</div>
             <p className="mb-1 flex items-center gap-2">
               <Phone className="h-4 w-4 text-emerald-600" aria-hidden />
-              <a className="hover:underline" href={`tel:${SITE.phoneDisplay}`}>{SITE.phoneDisplay}</a>
+              <span>{SITE.phoneDisplay}</span>
             </p>
             <p className="flex items-center gap-2">
               <span aria-hidden>
@@ -100,9 +167,9 @@ export default function Layout() {
                     <path d="M26.88 5.12C24.13 2.37 20.66 1 17 1S9.87 2.37 7.12 5.12C4.37 7.87 3 11.34 3 15c0 2.49.68 4.92 1.97 7.05L3 31l9.16-1.93C14.24 30.33 15.61 31 17 31c3.66 0 7.13-1.37 9.88-4.12C29.63 24.13 31 20.66 31 17s-1.37-7.13-4.12-9.88zM17 28.5c-1.19 0-2.35-.27-3.44-.79l-.41-.2-5.42 1.14 1.13-5.29-.22-.35C7.14 21.04 6.5 18.95 6.5 16 6.5 9.65 11.65 4.5 18 4.5S29.5 9.65 29.5 16 24.35 28.5 17 28.5z"/>
                   </svg>
                 </a>
-                <a href={`tel:${SITE.phoneDisplay}`} aria-label="Phone" className="inline-flex h-8 w-8 items-center justify-center rounded-full border hover:bg-accent">
+                <div aria-label="Phone" className="inline-flex h-8 w-8 items-center justify-center rounded-full border">
                   <Phone className="h-4 w-4" />
-                </a>
+                </div>
               </div>
             </div>
           </div>

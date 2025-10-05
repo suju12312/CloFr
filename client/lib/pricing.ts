@@ -34,10 +34,10 @@ export const HOUSEHOLD_RATES: ItemRate[] = [
 ];
 
 export const FOOTWEAR_RATES: ItemRate[] = [
-  { item: "Sneakers", washFold: 380, dryClean: 400, iron: "" }, // Clean, Deep Clean, Polish
+  { item: "Sneakers", washFold: 380, dryClean: 400, iron: "-" }, // Clean, Deep Clean, Polish
   { item: "Leather Shoes", washFold: 490, dryClean: 510, iron: 200 },
   { item: "Heels", washFold: 500, dryClean: 520, iron: 180 },
-  { item: "Sports Shoes", washFold: 380, dryClean: 400, iron: "" },
+  { item: "Sports Shoes", washFold: 380, dryClean: 400, iron: "-" },
   { item: "Boots", washFold: "700+", dryClean: "730+", iron: 200 },
 ];
 
