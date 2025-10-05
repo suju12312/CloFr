@@ -90,7 +90,8 @@ export default function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="rounded-xl border bg-card p-5 sm:p-6 shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md"
+                className="rounded-xl border bg-card p-5 sm:p-6 shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md text-center flex flex-col items-center"
+
               >
                 <div className="h-11 w-11 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center"><Icon className="h-6 w-6" /></div>
                 <h3 className="mt-3 sm:mt-4 font-semibold text-base sm:text-lg">{t(`home.how.${key}.t`)}</h3>
