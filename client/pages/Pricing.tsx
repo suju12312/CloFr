@@ -132,7 +132,7 @@ function RatesListMobile({ data, labels }: { data: { item: string; washFold?: nu
   return (
     <div className="md:hidden space-y-3">
       {data.map((r) => (
-        <div key={r.item} className="rounded-lg border bg-card p-3">
+        <div key={r.item} className="rounded-lg border bg-card dark:bg-slate-800 p-3">
           <div className="font-semibold">{r.item}</div>
           <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
             <div className="text-muted-foreground">{l.c1}</div>
@@ -199,11 +199,14 @@ export default function Pricing() {
                 </Tabs>
                 <p className="mt-3 text-xs text-muted-foreground">{t("pricing.note")}</p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-2 justify-center">
-                  <Button size="lg" asChild>
+                  <Button size="lg" asChild className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl">
                     <a href={whatsappLink("Hi, I have a custom pricing question.")} target="_blank" rel="noreferrer">Ask on WhatsApp</a>
                   </Button>
-                  <Button size="lg" asChild variant="secondary">
+                  <Button size="lg" asChild className="bg-emerald-500 hover:bg-emerald-600 text-white dark:bg-emerald-600 dark:hover:bg-emerald-700 shadow-lg hover:shadow-xl">
                     <a href="/services">See Services</a>
+                  </Button>
+                  <Button size="lg" asChild className="bg-emerald-500 hover:bg-emerald-600 text-white dark:bg-emerald-600 dark:hover:bg-emerald-700 shadow-lg hover:shadow-xl">
+                    <a href="/contact">Get in Touch</a>
                   </Button>
                 </div>
               </CardContent>
@@ -227,7 +230,7 @@ export default function Pricing() {
                       <li key={f}>{f}</li>
                     ))}
                   </ul>
-                  <Button asChild className="mt-4 w-full">
+                  <Button asChild className="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-xl">
                     <a
                       href={whatsappLink(`I'd like the ${p.name} plan (up to ${p.garments} garments).`)}
                       target="_blank"
@@ -242,7 +245,7 @@ export default function Pricing() {
           </div>
         </div>
 
-        
+
       </div>
     </section>
   );

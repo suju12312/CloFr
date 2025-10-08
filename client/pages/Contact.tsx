@@ -185,7 +185,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="font-semibold">WhatsApp</div>
-                  <a className="text-primary hover:underline" href={`https://wa.me/${SITE.whatsappNumber}`} target="_blank" rel="noreferrer">Chat now</a>
+                  <a className="text-primary hover:underline dark:text-emerald-400" href={`https://wa.me/${SITE.whatsappNumber}`} target="_blank" rel="noreferrer">Chat now</a>
                 </div>
               </div>
             </CardContent>

@@ -41,17 +41,9 @@ export default function Layout() {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-emerald-50 dark:from-slate-900 dark:to-slate-950">
       {/* Reserve space so content doesn't go under sticky header */}
       <div aria-hidden className="h-16 md:h-20" />
-      <header className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-white/80 dark:bg-slate-900/80 border-b">
+      <header className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-white/80 dark:bg-slate-900/80 border-b dark:border-slate-700">
         <div className="container mx-auto px-4 py-3 flex items-center gap-3 justify-between">
           <div className="flex items-center gap-2">
-            {(
-              <Button variant="outline" size="icon" aria-label="Go back" onClick={() => navigate(-1)}>
-                {/* back icon */}
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <polyline points="15 18 9 12 15 6" />
-                </svg>
-              </Button>
-            )}
             <a href="/" className="flex items-center gap-2 font-extrabold text-xl">
               <span className="inline-block h-8 w-8 rounded-lg bg-emerald-500 text-white grid place-items-center shadow-sm">CF</span>
               <span>{SITE.name}</span>
@@ -77,20 +69,10 @@ export default function Layout() {
             <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
-            <Button asChild>
-              <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`Hi ${SITE.name}, I want to place a laundry order.`)}`} target="_blank" rel="noreferrer">{t("common.orderWhatsApp")}</a>
-            </Button>
           </div>
 
           {/* Mobile toggles */}
           <div className="md:hidden flex items-center gap-2">
-            {(
-              <Button variant="outline" size="icon" aria-label="Go back" onClick={() => setMobileOpen(false) || navigate(-1)}>
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                  <polyline points="15 18 9 12 15 6" />
-                </svg>
-              </Button>
-            )}
             <Select
               value={lang}
               onValueChange={(v) => {
@@ -131,9 +113,6 @@ export default function Layout() {
                 <NavItem to="/pricing" label={t("nav.pricing")} onClick={() => setMobileOpen(false)} />
                 <NavItem to="/contact" label={t("nav.contact")} onClick={() => setMobileOpen(false)} />
                 </nav>
-                <Button asChild className="w-full" onClick={() => setMobileOpen(false)}>
-                  <a href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(`Hi ${SITE.name}, I want to place a laundry order.`)}`} target="_blank" rel="noreferrer">{t("common.orderWhatsApp")}</a>
-                </Button>
               </div>
             </div>
           </>

@@ -82,11 +82,11 @@ export default function Services() {
             {categories.map(({ title, desc, Icon, types }) => (
               <Card
                 key={title}
-                className="group relative h-full overflow-hidden border-emerald-100 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-emerald-300 hover:ring-1 hover:ring-emerald-200 focus-within:ring-2 focus-within:ring-emerald-300"
+                className="group relative h-full overflow-hidden border-emerald-100 dark:border-emerald-800 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-600 hover:ring-1 hover:ring-emerald-200 dark:hover:ring-emerald-700 focus-within:ring-2 focus-within:ring-emerald-300 dark:focus-within:ring-emerald-600"
               >
-                <CardContent className="p-5 sm:p-6 flex flex-col h-full bg-gradient-to-br from-transparent to-transparent group-hover:from-emerald-50/40">
+                <CardContent className="p-5 sm:p-6 flex flex-col h-full bg-gradient-to-br from-transparent to-transparent group-hover:from-emerald-50/40 dark:group-hover:from-emerald-900/20">
                   <div className="flex items-center gap-3">
-                    <div className="h-11 w-11 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center transition-colors duration-200 group-hover:bg-emerald-600 group-hover:text-white">
+                    <div className="h-11 w-11 rounded-lg bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 grid place-items-center transition-colors duration-200 group-hover:bg-emerald-600 group-hover:text-white">
                       <Icon className="h-6 w-6" />
                     </div>
                     <div>
