@@ -26,7 +26,7 @@ export const WOMEN_RATES: ItemRate[] = [
 ];
 
 export const HOUSEHOLD_RATES: ItemRate[] = [
-  { item: "Bedsheet Single"+"/"+"Double", washFold: 120, dryClean: 140},
+  { item: "Bedsheet Single"+"/"+"Double", washFold: "170/280", dryClean: "195/300"},
   { item: "Blanket Single 1/2 Ply", washFold: "330/420", dryClean: "350/440"},
   { item: "Blanket Double 1/2 Ply", washFold: "450/550", dryClean: "470/570"},
   { item: "Carpet", washFold: "35/Sq Ft", dryClean: "45/Sq Ft" },

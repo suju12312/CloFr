@@ -1,8 +1,8 @@
 export const SITE = {
   name: "CloFr",
   tagline: "Premium Laundry & Dry Cleaning",
-  whatsappNumber: "918591462122",
-  phoneDisplay: "+91 8591462122",
+  whatsappNumber: "917977518133",
+  phoneDisplay: "+91 7977518133",
 };
 
 export function whatsappLink(message?: string) {

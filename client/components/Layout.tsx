@@ -155,7 +155,7 @@ export default function Layout() {
             <div className="mt-3">
               <div className="font-semibold mb-1">{t("footer.social")}</div>
               <div className="flex items-center gap-3">
-                <a href="https://instagram.com/freshfold" target="_blank" rel="noreferrer" aria-label="Instagram" className="inline-flex h-8 w-8 items-center justify-center rounded-full border hover:bg-accent">
+                <a href="https://instagram.com/clofr_laundry" target="_blank" rel="noreferrer" aria-label="Instagram" className="inline-flex h-8 w-8 items-center justify-center rounded-full border hover:bg-accent">
                   <Instagram className="h-4 w-4" />
                 </a>
                 <a href={`https://wa.me/${SITE.whatsappNumber}`} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="inline-flex h-8 w-8 items-center justify-center rounded-full border hover:bg-accent">
