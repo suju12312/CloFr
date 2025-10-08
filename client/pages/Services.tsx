@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { whatsappLink } from "@/lib/site";
-import { Droplets, Sparkles, Shirt, Footprints, Home, Clock } from "lucide-react";
+import { Droplets, Sparkles, Shirt, Footprints, Home, Clock, Check } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 const categories = [
   {
@@ -66,39 +68,68 @@ const categories = [
 ];
 
 export default function Services() {
+  const { t } = useI18n();
   return (
-    <section className="py-16">
+    <section className="pt-4 sm:pt-10 pb-16">
       <div className="container mx-auto px-4">
         <div className="mb-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">Our Services</h1>
-          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto break-words">
-            Laundry, Dry Cleaning, Ironing, Footwear care, and Household cleaning — sab types available.
-          </p>
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight">{t("services.title")}</h1>
+          <p className="mt-3 text-muted-foreground max-w-2xl mx-auto break-words">{t("services.intro")}</p>
         </div>
 
-        <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map(({ title, desc, Icon, types }) => (
-            <div key={title} className="rounded-xl border bg-card text-card-foreground shadow-sm p-5 sm:p-6 transition-transform hover:-translate-y-0.5 hover:shadow-md">
-              <div className="h-11 w-11 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center">
-                <Icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-3 sm:mt-4 font-semibold text-base sm:text-lg">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-              <ul className="mt-3 sm:mt-4 text-sm space-y-1 list-disc pl-5">
-                {types.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2 grid gap-5 sm:gap-6 sm:grid-cols-2 auto-rows-fr">
+            {categories.map(({ title, desc, Icon, types }) => (
+              <Card
+                key={title}
+                className="group relative h-full overflow-hidden border-emerald-100 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-emerald-300 hover:ring-1 hover:ring-emerald-200 focus-within:ring-2 focus-within:ring-emerald-300"
+              >
+                <CardContent className="p-5 sm:p-6 flex flex-col h-full bg-gradient-to-br from-transparent to-transparent group-hover:from-emerald-50/40">
+                  <div className="flex items-center gap-3">
+                    <div className="h-11 w-11 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center transition-colors duration-200 group-hover:bg-emerald-600 group-hover:text-white">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-base sm:text-lg">{title}</div>
+                      <div className="text-sm text-muted-foreground">{desc}</div>
+                    </div>
+                  </div>
+                  <ul className="mt-4 text-sm leading-relaxed grid grid-cols-1 sm:grid-cols-2 gap-y-2 flex-1">
+                    {types.map((t) => (
+                      <li key={t} className="flex items-start gap-2">
+                        <Check className="mt-0.5 h-4 w-4 text-emerald-600 shrink-0" />
+                        <span className="text-[0.95rem]">{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="pt-4 mt-4 border-t flex items-center justify-end">
+                    <Button
+                      asChild
+                      size="sm"
+                      className="bg-emerald-600 text-white hover:bg-emerald-700 transition-colors shadow-sm"
+                    >
+                      <a href="/pricing">See Pricing</a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-        <div className="mt-8 sm:mt-10 text-center">
-          <Button asChild size="lg" className="w-full sm:w-auto">
-            <a href={whatsappLink("Hi, I want to book a service.")} target="_blank" rel="noreferrer">
-              Book on WhatsApp
-            </a>
-          </Button>
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg sm:text-xl">{t("services.notes.title")}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="text-sm space-y-1 text-muted-foreground list-disc pl-5">
+                  <li>{t("services.notes.n1")}</li>
+                  <li>{t("services.notes.n2")}</li>
+                  <li>{t("services.notes.n3")}</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

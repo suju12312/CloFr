@@ -31,6 +31,9 @@ export default function Index() {
               <Button asChild size="lg" className="w-full sm:w-auto">
                 <a href={whatsappLink(`Hi ${SITE.name}, I want to place a laundry order.`)} target="_blank" rel="noreferrer">{t("common.orderWhatsApp")}</a>
               </Button>
+              <Button asChild size="lg" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700">
+                <a href="/pricing">View Pricing</a>
+              </Button>
               <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                 <a href="/services">{t("common.seeServices")}</a>
               </Button>
@@ -45,30 +48,38 @@ export default function Index() {
           <motion.div className="relative" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
             <div className="relative rounded-2xl border bg-white shadow-xl p-6">
               <div className="grid grid-cols-2 gap-4">
-                <Card className="bg-emerald-50">
-                  <CardContent className="p-4">
+                <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                  <Card className="bg-emerald-50 transition-shadow hover:shadow-md hover:border-emerald-200">
+                    <CardContent className="p-4">
                     <div className="text-3xl font-extrabold text-emerald-700">+50</div>
                     <div className="text-xs text-emerald-800/80">{t("home.metrics.washedWeekly")}</div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-teal-50">
-                  <CardContent className="p-4">
+                    </CardContent>
+                  </Card>
+                </motion.div>
+                <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                  <Card className="bg-teal-50 transition-shadow hover:shadow-md hover:border-teal-200">
+                    <CardContent className="p-4">
                     <div className="text-3xl font-extrabold text-teal-700">98%</div>
                     <div className="text-xs text-teal-800/80">{t("home.metrics.onTime")}</div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-cyan-50">
-                  <CardContent className="p-4">
+                    </CardContent>
+                  </Card>
+                </motion.div>
+                <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                  <Card className="bg-cyan-50 transition-shadow hover:shadow-md hover:border-cyan-200">
+                    <CardContent className="p-4">
                     <div className="text-3xl font-extrabold text-cyan-700">24h</div>
                     <div className="text-xs text-cyan-800/80">{t("home.metrics.expressOption")}</div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-sky-50">
-                  <CardContent className="p-4">
+                    </CardContent>
+                  </Card>
+                </motion.div>
+                <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+                  <Card className="bg-sky-50 transition-shadow hover:shadow-md hover:border-sky-200">
+                    <CardContent className="p-4">
                     <div className="text-3xl font-extrabold text-sky-700">4.5★</div>
                     <div className="text-xs text-sky-800/80">{t("home.metrics.rating")}</div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -107,7 +118,16 @@ export default function Index() {
           <h2 className="text-2xl md:text-3xl font-bold text-center">{t("home.why.title")}</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[{ Icon: Leaf, key: "eco" }, { Icon: ShieldCheck, key: "trust" }, { Icon: Sparkles, key: "finish" }, { Icon: Truck, key: "door" }].map(({ Icon, key }, i) => (
-              <motion.div key={key} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="rounded-xl border bg-card p-6 text-center shadow-sm">
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -4, scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                className="rounded-xl border bg-card p-6 text-center shadow-sm transition-shadow hover:shadow-md hover:border-emerald-300"
+              >
                 <div className="mx-auto h-11 w-11 rounded-lg bg-emerald-100 text-emerald-700 grid place-items-center"><Icon className="h-6 w-6" /></div>
                 <h3 className="mt-4 font-semibold">{t(`home.why.${key}.t`)}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{t(`home.why.${key}.d`)}</p>

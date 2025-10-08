@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { SITE } from "@/lib/site";
 import WhatsAppFAB from "@/components/WhatsAppFAB";
 import { Button } from "@/components/ui/button";
@@ -31,6 +31,7 @@ export default function Layout() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -42,10 +43,20 @@ export default function Layout() {
       <div aria-hidden className="h-16 md:h-20" />
       <header className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-white/80 dark:bg-slate-900/80 border-b">
         <div className="container mx-auto px-4 py-3 flex items-center gap-3 justify-between">
-          <a href="/" className="flex items-center gap-2 font-extrabold text-xl">
-            <span className="inline-block h-8 w-8 rounded-lg bg-emerald-500 text-white grid place-items-center shadow-sm">CF</span>
-            <span>{SITE.name}</span>
-          </a>
+          <div className="flex items-center gap-2">
+            {(
+              <Button variant="outline" size="icon" aria-label="Go back" onClick={() => navigate(-1)}>
+                {/* back icon */}
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </Button>
+            )}
+            <a href="/" className="flex items-center gap-2 font-extrabold text-xl">
+              <span className="inline-block h-8 w-8 rounded-lg bg-emerald-500 text-white grid place-items-center shadow-sm">CF</span>
+              <span>{SITE.name}</span>
+            </a>
+          </div>
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-2">
             <NavItem to="/" label={t("nav.home")} />
@@ -73,6 +84,13 @@ export default function Layout() {
 
           {/* Mobile toggles */}
           <div className="md:hidden flex items-center gap-2">
+            {(
+              <Button variant="outline" size="icon" aria-label="Go back" onClick={() => setMobileOpen(false) || navigate(-1)}>
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </Button>
+            )}
             <Select
               value={lang}
               onValueChange={(v) => {

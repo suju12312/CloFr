@@ -3,8 +3,99 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { MEN_RATES, WOMEN_RATES, HOUSEHOLD_RATES, FOOTWEAR_RATES, PACKAGES } from "@/lib/pricing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { whatsappLink } from "@/lib/site";
+import { whatsappLink, SITE } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
+async function downloadPricingPdf() {
+  const { default: jsPDF } = await import("jspdf");
+  const { default: autoTable } = await import("jspdf-autotable");
+  const doc = new jsPDF({ unit: "pt" });
+  const margin = 36;
+  let y = margin;
+  const domain = "clofr.online";
+  const formatVal = (v: any, isLabel: boolean) => {
+    if (isLabel) return v;
+    if (v === undefined || v === null || v === "" || v === "-") return "-";
+    return `Rs ${v}`; // Use ASCII to avoid glyph issues in PDFs
+  };
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.text(`${SITE.name} - Price List`, margin, y);
+  y += 20;
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+  doc.text(`WhatsApp: +${SITE.whatsappNumber.replace(/^91/, "91 ")}`, margin, y);
+  y += 22;
+
+  const sections: Array<{ title: string; headers: string[]; rows: any[] }> = [
+    {
+      title: "Men",
+      headers: ["Item", "Wash & Fold", "Dry Clean", "Iron", "Steam Iron"],
+      rows: MEN_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "", r.steamIron ?? "-"]),
+    },
+    {
+      title: "Women",
+      headers: ["Item", "Wash & Fold", "Dry Clean", "Iron", "Steam Iron"],
+      rows: WOMEN_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "", r.steamIron ?? "-"]),
+    },
+    {
+      title: "Household",
+      headers: ["Item", "Wash & Fold", "Dry Clean"],
+      rows: HOUSEHOLD_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-"]),
+    },
+    {
+      title: "Footwear",
+      headers: ["Item", "Cleaning", "Deep Clean", "Polish"],
+      rows: FOOTWEAR_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-"]),
+    },
+  ];
+
+  sections.forEach((section, idx) => {
+    autoTable(doc, {
+      startY: y,
+      head: [[section.title.toUpperCase(), ...new Array(section.headers.length - 1).fill("")]],
+      styles: { font: "helvetica", fontSize: 11 },
+      headStyles: { fillColor: [16, 185, 129], textColor: 255, halign: "left" },
+      body: [],
+      theme: "plain",
+      margin: { left: margin, right: margin },
+      didDrawPage: (data) => {
+        // no-op
+      },
+    });
+
+    autoTable(doc, {
+      startY: (doc as any).lastAutoTable.finalY + 6,
+      head: [section.headers],
+      body: section.rows.map((row) => row.map((v: any, i: number) => formatVal(v, i === 0))),
+      styles: { font: "helvetica", fontSize: 10, lineWidth: 0.5, lineColor: [229, 231, 235] },
+      headStyles: { fillColor: [241, 245, 249], textColor: 0, halign: "left" },
+      alternateRowStyles: { fillColor: [249, 250, 251] },
+      margin: { left: margin, right: margin },
+    });
+
+    y = (doc as any).lastAutoTable.finalY + 20;
+    if (idx === sections.length - 1) {
+      doc.setFontSize(9.5);
+      doc.text("Note: Prices are indicative and may vary.", margin, y);
+    }
+  });
+
+  // Footer with domain and page numbers
+  const pageCount = (doc as any).getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFontSize(9);
+    doc.setTextColor(100);
+    const footerText = `${domain}  •  Generated on ${new Date().toLocaleDateString()}`;
+    doc.text(footerText, margin, (doc as any).internal.pageSize.getHeight() - 16);
+    const pageLabel = `Page ${i} of ${pageCount}`;
+    const pageWidth = (doc as any).internal.pageSize.getWidth();
+    doc.text(pageLabel, pageWidth - margin, (doc as any).internal.pageSize.getHeight() - 16, { align: "right" });
+  }
+
+  doc.save("clofr-price-list.pdf");
+}
 
 function RatesTable({ data, labels }: { data: { item: string; washFold?: number; dryClean?: number; iron?: number; steamIron?: number }[]; labels?: { c1: string; c2: string; c3: string; c4?: string } }) {
   const l = labels ?? { c1: "Wash & Fold", c2: "Dry Clean", c3: "Ironing" };
@@ -77,6 +168,9 @@ export default function Pricing() {
                 <CardTitle className="text-xl sm:text-2xl">{t("pricing.itemRates")}</CardTitle>
               </CardHeader>
               <CardContent>
+                <div className="mb-4 flex justify-end">
+                  <Button variant="outline" onClick={downloadPricingPdf}>Download Price List (PDF)</Button>
+                </div>
                 <Tabs defaultValue="men">
                   <TabsList
                     className="flex gap-2 overflow-x-auto max-w-full snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -104,11 +198,20 @@ export default function Pricing() {
                   </TabsContent>
                 </Tabs>
                 <p className="mt-3 text-xs text-muted-foreground">{t("pricing.note")}</p>
+                <div className="mt-6 flex flex-col sm:flex-row gap-2 justify-center">
+                  <Button size="lg" asChild>
+                    <a href={whatsappLink("Hi, I have a custom pricing question.")} target="_blank" rel="noreferrer">Ask on WhatsApp</a>
+                  </Button>
+                  <Button size="lg" asChild variant="secondary">
+                    <a href="/services">See Services</a>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
 
           <div className="space-y-6">
+            
             {PACKAGES.map((p) => (
               <Card key={p.name} className="transition-transform hover:-translate-y-0.5 hover:shadow-md">
                 <CardHeader>
@@ -139,11 +242,7 @@ export default function Pricing() {
           </div>
         </div>
 
-        <div className="mt-10 text-center">
-          <Button asChild size="lg">
-            <a href={whatsappLink("Hi, I have a custom pricing question.")} target="_blank" rel="noreferrer">Ask on WhatsApp</a>
-          </Button>
-        </div>
+        
       </div>
     </section>
   );

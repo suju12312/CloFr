@@ -47,6 +47,16 @@ const translations = {
       title: "Our Services",
       intro:
         "Laundry, Dry Cleaning, Ironing, Footwear care, and Household cleaning — all types available.",
+      cta: {
+        title: "Ready to book?",
+        desc: "View detailed pricing or chat with us on WhatsApp.",
+      },
+      notes: {
+        title: "Good to know",
+        n1: "Free pickup and delivery within service area",
+        n2: "Express options available for select items",
+        n3: "Final prices may vary by fabric/condition",
+      },
       cats: {
         laundry: "Laundry",
         dry: "Dry Cleaning",
@@ -139,6 +149,16 @@ const translations = {
       title: "हमारी सेवाएं",
       intro:
         "लॉन्ड्री, ड्राई क्लीनिंग, आयरनिंग, फुटवेयर केयर और हाउसहोल्ड क्लीनिंग — सब उपलब्ध।",
+      cta: {
+        title: "बुक करने के लिए तैयार?",
+        desc: "डिटेल प्राइसिंग देखें या व्हाट्सएप पर बात करें।",
+      },
+      notes: {
+        title: "ध्यान देने योग्य",
+        n1: "सर्विस एरिया में फ्री पिकअप/डिलीवरी",
+        n2: "कुछ आइटम्स के लिए एक्सप्रेस विकल्प",
+        n3: "फाइनल कीमत फैब्रिक/कंडीशन पर निर्भर",
+      },
       cats: {
         laundry: "लॉन्ड्री",
         dry: "ड्राई क्लीनिंग",
@@ -231,6 +251,16 @@ const translations = {
       title: "आमच्या सेवा",
       intro:
         "लॉन्ड्री, ड्राय क्लिनिंग, इस्त्री, फुटवेअर केअर आणि हाऊसहोल्ड क्लिनिंग — सर्व उपलब्ध.",
+      cta: {
+        title: "बुक करायला तयार?",
+        desc: "तपशीलवार किंमत पहा किंवा WhatsApp वर बोला.",
+      },
+      notes: {
+        title: "महत्वाचे",
+        n1: "सेवा क्षेत्रात मोफत पिकअप/डिलिव्हरी",
+        n2: "काही आयटम्ससाठी एक्सप्रेस पर्याय",
+        n3: "अंतिम किंमत फॅब्रिक/स्थितीवर अवलंबून",
+      },
       cats: {
         laundry: "लॉन्ड्री",
         dry: "ड्राय क्लिनिंग",
