@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { MEN_RATES, WOMEN_RATES, HOUSEHOLD_RATES, FOOTWEAR_RATES, PACKAGES } from "@/lib/pricing";
+import { MEN_RATES, WOMEN_RATES, HOUSEHOLD_RATES, FOOTWEAR_RATES, WOOLEN_RATES, BAGS_RATES, PACKAGES } from "@/lib/pricing";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { whatsappLink, SITE } from "@/lib/site";
 import { useI18n } from "@/lib/i18n";
@@ -48,6 +48,17 @@ async function downloadPricingPdf() {
       headers: ["Item", "Cleaning", "Deep Clean", "Polish"],
       rows: FOOTWEAR_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-"]),
     },
+    {
+      title: "Woolen",
+      headers: ["Item", "Dry Clean", "Steam Iron"],
+      rows: WOOLEN_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-"]),
+    },
+    {
+      title: "Bags",
+      headers: ["Item", "Dry Clean", "Steam Iron"],
+      rows: BAGS_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-"]),
+    },
+    
   ];
 
   sections.forEach((section, idx) => {
@@ -94,7 +105,7 @@ async function downloadPricingPdf() {
     doc.text(pageLabel, pageWidth - margin, (doc as any).internal.pageSize.getHeight() - 16, { align: "right" });
   }
 
-  doc.save("clofr-price-list.pdf");
+  doc.save("CloFr-price-list.pdf");
 }
 
 function RatesTable({ data, labels }: { data: { item: string; washFold?: number; dryClean?: number; iron?: number; steamIron?: number }[]; labels?: { c1: string; c2: string; c3: string; c4?: string } }) {
@@ -179,6 +190,8 @@ export default function Pricing() {
                     <TabsTrigger value="women" className="px-3 py-1.5 text-sm snap-start">{t("pricing.tabs.women")}</TabsTrigger>
                     <TabsTrigger value="household" className="px-3 py-1.5 text-sm snap-start">{t("pricing.tabs.household")}</TabsTrigger>
                     <TabsTrigger value="footwear" className="px-3 py-1.5 text-sm snap-start">{t("pricing.tabs.footwear")}</TabsTrigger>
+                    <TabsTrigger value="woolen" className="px-3 py-1.5 text-sm snap-start">{t("pricing.tabs.woolen")}</TabsTrigger>
+                    <TabsTrigger value= "bags" className="px-3 py-1.5 text-sm snap-start">{t("pricing.tabs.bags")}</TabsTrigger>
                   </TabsList>
                   <TabsContent value="men" className="mt-4">
                     <RatesListMobile data={MEN_RATES} labels={{ c1: "Wash & Fold", c2: "Dry Clean", c3: "Ironing", c4: "Steam Iron" }} />
@@ -195,6 +208,14 @@ export default function Pricing() {
                   <TabsContent value="footwear" className="mt-4">
                     <RatesListMobile data={FOOTWEAR_RATES} labels={{ c1: "Cleaning", c2: "Deep Clean", c3: "Polish" }} />
                     <RatesTable data={FOOTWEAR_RATES} labels={{ c1: "Cleaning", c2: "Deep Clean", c3: "Polish" }} />
+                  </TabsContent>
+                  <TabsContent value="woolen" className="mt-4">
+                    <RatesListMobile data={WOOLEN_RATES} labels={{ c1: "Wash & Fold", c2: "Dry Clean", c3: "Ironing", c4: "Steam Iron" }} />
+                    <RatesTable data={WOOLEN_RATES} labels={{ c1: "Wash & Fold", c2: "Dry Clean", c3: "Ironing", c4: "Steam Iron" }} />
+                  </TabsContent>
+                  <TabsContent value="bags" className="mt-4">
+                    <RatesListMobile data={BAGS_RATES} labels={{ c1: "Wash & Fold", c2: "Dry Clean", c3: "Ironing", c4: "Steam Iron" }} />
+                    <RatesTable data={BAGS_RATES} labels={{ c1: "Wash & Fold", c2: "Dry Clean", c3: "Ironing", c4: "Steam Iron" }} />
                   </TabsContent>
                 </Tabs>
                 <p className="mt-3 text-xs text-muted-foreground">{t("pricing.note")}</p>

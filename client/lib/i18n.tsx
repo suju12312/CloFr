@@ -81,7 +81,7 @@ const translations = {
       title: "Pricing",
       intro: "Men and Women wear pricing listed separately. Transparent and affordable.",
       itemRates: "Item-wise Rates (INR)",
-      tabs: { men: "Men", women: "Women", household: "Household", footwear: "Footwear" },
+      tabs: { men: "Men", women: "Women", household: "Household", footwear: "Footwear", woolen: "Woolen", bags:"Bags" },
       headers: { item: "Item", washFold: "Wash & Fold", dryClean: "Dry Clean", ironing: "Ironing", steamIron: "Steam Iron" },
       note: "Prices include free pickup and delivery within service area. GST extra if applicable.",
       choose: "Choose on WhatsApp",
