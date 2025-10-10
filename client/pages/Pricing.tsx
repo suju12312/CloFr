@@ -27,36 +27,64 @@ async function downloadPricingPdf() {
   doc.text(`WhatsApp: +${SITE.whatsappNumber.replace(/^91/, "91 ")}`, margin, y);
   y += 22;
 
-  const sections: Array<{ title: string; headers: string[]; rows: any[] }> = [
+ const sections: Array<{ title: string; headers: string[]; rows: any[] }> = [
   {
     title: "Men",
     headers: ["Item", "Wash & Fold", "Dry Clean", "Iron", "Steam Iron"],
-    rows: MEN_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-", r.steamIron ?? "-"]),
+    rows: MEN_RATES.map((r) => [
+      r.item,
+      r.washFold ?? "-",
+      r.dryClean ?? "-",
+      r.iron ?? "-",
+      r.steamIron ?? "-"
+    ]),
   },
   {
     title: "Women",
     headers: ["Item", "Wash & Fold", "Dry Clean", "Iron", "Steam Iron"],
-    rows: WOMEN_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-", r.steamIron ?? "-"]),
+    rows: WOMEN_RATES.map((r) => [
+      r.item,
+      r.washFold ?? "-",
+      r.dryClean ?? "-",
+      r.iron ?? "-",
+      r.steamIron ?? "-"
+    ]),
   },
   {
     title: "Household",
     headers: ["Item", "Wash & Fold", "Dry Clean"],
-    rows: HOUSEHOLD_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-"]),
+    rows: HOUSEHOLD_RATES.map((r) => [
+      r.item,
+      r.washFold ?? "-",
+      r.dryClean ?? "-"
+    ]),
   },
   {
     title: "Footwear",
     headers: ["Item", "Cleaning", "Deep Clean", "Polish"],
-    rows: FOOTWEAR_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-"]),
+    rows: FOOTWEAR_RATES.map((r) => [
+      r.item,
+      r.washFold ?? "-",
+      r.dryClean ?? "-",
+      r.iron ?? "-"
+    ]),
   },
   {
     title: "Woolen",
-    headers: ["Item", "Wash & Fold", "Dry Clean", "Iron", "Steam Iron"],
-    rows: WOOLEN_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-", r.steamIron ?? "-"]),
+    headers: ["Item", "Dry Clean", "Steam Iron"],
+    rows: WOOLEN_RATES.map((r) => [
+      r.item,
+      r.dryClean ?? "-",
+      r.steamIron ?? "-"
+    ]),
   },
   {
     title: "Bags",
-    headers: ["Item", "Wash & Fold", "Dry Clean", "Iron", "Steam Iron"],
-    rows: BAGS_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-", r.steamIron ?? "-"]),
+    headers: ["Item", "Dry Clean"],
+    rows: BAGS_RATES.map((r) => [
+      r.item,
+      r.dryClean ?? "-"
+    ]),
   },
 ];
 
