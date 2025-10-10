@@ -27,7 +27,7 @@ async function downloadPricingPdf() {
   doc.text(`WhatsApp: +${SITE.whatsappNumber.replace(/^91/, "91 ")}`, margin, y);
   y += 22;
 
- const sections: Array<{ title: string; headers: string[]; rows: any[] }> = [
+const sections: Array<{ title: string; headers: string[]; rows: any[] }> = [
   {
     title: "Men",
     headers: ["Item", "Wash & Fold", "Dry Clean", "Iron", "Steam Iron"],
@@ -87,7 +87,6 @@ async function downloadPricingPdf() {
     ]),
   },
 ];
-
 
   sections.forEach((section, idx) => {
     autoTable(doc, {
