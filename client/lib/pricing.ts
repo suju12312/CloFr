@@ -1,4 +1,4 @@
-export type ItemRate = {
+iexport type ItemRate = {
   item: string;
   washFold?: number | string;
   dryClean?: number | string;
@@ -11,7 +11,7 @@ export const MEN_RATES: ItemRate[] = [
   { item: "Shirt", washFold: "90", dryClean: 110, iron: 9, steamIron: 30 },
   { item: "T-shirt", washFold: 75, dryClean: 95, iron: 9, steamIron: 25  },
   { item: "Coat",  dryClean: 300, steamIron: 100 },
-  { item: "Men Suit 2/3 pcs",washFold:"420/570" , dryClean: "450/600", steamIron: 100 },
+  { item: "Men Suit 2/3 pcs",washFold:"420/570" , dryClean: "450/600", steamIron: "150/190"},
   { item: "Trousers", washFold: 90, dryClean: 110, iron: 9, steamIron: 30 },
   { item: "Jeans", washFold: 100, dryClean: 120, iron: 9, steamIron: 30 },
   { item: "Kurta/Pyjama", washFold: "100+/80+", dryClean: "120+/100+", iron: "10+/10+", steamIron: "30+/30+" },
