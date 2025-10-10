@@ -55,7 +55,7 @@ async function downloadPricingPdf() {
     },
     {
       title: "Bags",
-      headers: ["Item", "Dry Clean", "Steam Iron"],
+      headers: ["Item", "Dry Clean"],
       rows: BAGS_RATES.map((r) => [r.item, r.washFold ?? "-", r.dryClean ?? "-", r.iron ?? "-"]),
     },
     
