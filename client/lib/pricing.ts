@@ -1,4 +1,4 @@
-iexport type ItemRate = {
+export type ItemRate = {
   item: string;
   washFold?: number | string;
   dryClean?: number | string;
